@@ -1,34 +1,553 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-page: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-section: rgba(243, 234, 255, 0.3);
+  
+  /* Text */
+  --text-primary: rgb(24, 24, 24);
+  --text-secondary: rgb(112, 112, 112);
+  --text-muted: rgb(143, 143, 143);
+  
+  /* Borders */
+  --border-light: rgba(24, 24, 24, 0.1);
+  --border-medium: rgba(24, 24, 24, 0.2);
+  --border-strong: rgba(24, 24, 24, 0.3);
+  
+  /* Brand */
+  --brand-primary: rgb(0, 128, 255);
+  --brand-hover: rgb(0, 153, 255);
+  --brand-active: rgb(0, 102, 204);
+  
+  /* Gradients */
+  --gradient-button: linear-gradient(168deg, rgb(67, 67, 67) -63%, rgb(0, 0, 0) 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+body {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-page);
+  color: var(--text-primary);
 }
 
-.App-link {
-    color: #61dafb;
+/* Typography */
+.brand-display {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(60px, 8vw, 168px);
+  line-height: 1.1em;
+  color: var(--text-primary);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.heading-1 {
+  font-family: 'Satoshi';
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-2 {
+  font-family: 'Satoshi';
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.heading-3 {
+  font-family: 'Satoshi';
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.heading-4 {
+  font-family: 'Satoshi';
+  font-weight: 600;
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+.body-large {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.body-medium {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.body-small {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-muted);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--gradient-button);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-family: 'Satoshi';
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+
+.btn-primary:hover {
+  transform: scale(1.04);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-family: 'Satoshi';
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Loading Screen */
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(243, 234, 255, 0.8) 0%, rgba(255, 232, 240, 0.8) 50%, rgba(232, 244, 255, 0.8) 100%);
+}
+
+.loading-content {
+  text-align: center;
+}
+
+/* Onboarding Screen */
+.onboarding-screen {
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(243, 234, 255, 0.8) 0%, rgba(255, 232, 240, 0.8) 50%, rgba(232, 244, 255, 0.8) 100%);
+}
+
+.onboarding-content {
+  max-width: 500px;
+  width: 100%;
+}
+
+.onboarding-form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-input {
+  padding: 14px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  font-family: 'Satoshi';
+  font-size: 16px;
+  background: var(--bg-card);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(0, 128, 255, 0.1);
+}
+
+/* App Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'Satoshi';
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: rgba(24, 24, 24, 0.05);
+  color: var(--brand-primary);
+}
+
+.nav-link.active {
+  background: rgba(24, 24, 24, 0.1);
+  color: var(--text-primary);
+}
+
+.app-main {
+  flex: 1;
+  padding: 24px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Summary Card */
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.calorie-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.calorie-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(243, 234, 255, 0.8), rgba(232, 244, 255, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.calorie-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.macros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.macro-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Add Meal Section */
+.add-meal-section {
+  margin-bottom: 24px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Camera Section */
+.camera-section {
+  margin-bottom: 24px;
+}
+
+.camera-video {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.camera-controls button {
+  flex: 1;
+}
+
+/* Preview Section */
+.preview-section {
+  margin-bottom: 24px;
+}
+
+.preview-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* Result Section */
+.result-section {
+  margin-bottom: 24px;
+}
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.result-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.portion-control {
+  margin: 24px 0;
+}
+
+.nutrition-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.nutrition-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px;
+  background: var(--bg-section);
+  border-radius: 12px;
+}
+
+/* Meals Section */
+.meals-section {
+  margin-bottom: 24px;
+}
+
+.meals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.meal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.meal-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.meal-info {
+  flex: 1;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+}
+
+/* History Section */
+.history-section {
+  margin-bottom: 24px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.history-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.history-macros {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 809px) {
+  .app-main {
+    padding: 16px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-group button {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .nutrition-info {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .macros-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calorie-circle {
+    width: 150px;
+    height: 150px;
+  }
 }
