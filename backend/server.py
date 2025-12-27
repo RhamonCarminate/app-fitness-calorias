@@ -173,7 +173,7 @@ async def analyze_food_with_ai(image_base64: str) -> dict:
                     food_data['carbs'] = sum(item.get('carbs', 0) for item in parsed_data)
                     food_data['fats'] = sum(item.get('fats', 0) for item in parsed_data)
             else:
-                raise ValueError(\"Nenhum alimento identificado na resposta\")
+                raise ValueError("Nenhum alimento identificado na resposta")
         else:
             food_data = parsed_data
         
