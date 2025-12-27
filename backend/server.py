@@ -138,12 +138,21 @@ async def analyze_food_with_ai(image_base64: str) -> dict:
         import json
         import re
         
-        # Tentar extrair JSON da resposta
-        response_text = response.strip()
+        print(f"Resposta bruta do Gemini (tipo: {type(response)}): {response}")
+        
+        # Se a resposta for uma lista, pegar o primeiro elemento
+        if isinstance(response, list):
+            response_text = response[0] if response else ""
+        else:
+            response_text = str(response)
+        
+        response_text = response_text.strip()
         
         # Remover markdown se presente
         if response_text.startswith("```"):
             response_text = re.sub(r'```json\s*|```\s*', '', response_text)
+        
+        print(f"Texto após processamento: {response_text}")
         
         # Parse JSON
         food_data = json.loads(response_text)
