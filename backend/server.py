@@ -155,7 +155,27 @@ async def analyze_food_with_ai(image_base64: str) -> dict:
         print(f"Texto após processamento: {response_text}")
         
         # Parse JSON
-        food_data = json.loads(response_text)
+        parsed_data = json.loads(response_text)
+        
+        # Se retornou uma lista, combinar os alimentos ou pegar o principal
+        if isinstance(parsed_data, list):
+            if len(parsed_data) > 0:
+                # Pegar o primeiro item como principal
+                food_data = parsed_data[0]
+                # Se houver múltiplos, criar nome composto
+                if len(parsed_data) > 1:
+                    all_names = [item.get('food_name', '') for item in parsed_data]
+                    food_data['food_name'] = ' + '.join(all_names)
+                    # Somar valores nutricionais
+                    food_data['portion_size'] = sum(item.get('portion_size', 0) for item in parsed_data)
+                    food_data['calories'] = sum(item.get('calories', 0) for item in parsed_data)
+                    food_data['protein'] = sum(item.get('protein', 0) for item in parsed_data)
+                    food_data['carbs'] = sum(item.get('carbs', 0) for item in parsed_data)
+                    food_data['fats'] = sum(item.get('fats', 0) for item in parsed_data)
+            else:
+                raise ValueError(\"Nenhum alimento identificado na resposta\")
+        else:
+            food_data = parsed_data
         
         return food_data
         
